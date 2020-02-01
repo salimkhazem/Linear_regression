@@ -1,20 +1,35 @@
+#Import libraries 
 import numpy as np 
 import matplotlib.pyplot as plt 
 from sklearn.datasets import make_regression
 
 
+"""
+define function for linear regression modele  
+F(X) = theta * X 
+
+Theta: matrix which contains coefficient (a b c ... ) of polynomial F(X) 
+X : matrix which contains features 
+F(X) : target 
+
+"""
+#Definition of modele function 
+
 def modele(X,theta): 
     return X.dot(theta)
     
+# Definition of cost function 
 def cost_function(X,y,theta): 
     m=len(y)
     return 1/(2*m) * np.sum((modele(X,theta)-y)**2)
- 
+
+
+#Definition of grad function  
 def grad (X,y,theta): 
     m=len(y)
     return 1/m * X.T.dot(modele(X,theta)-y)
     
-    
+ #Definition of Algorithm of Gradient Descent to find minimum (or best value of coefficient theta )   
 def gradient_descent(X,y,theta,learning_rate,n_iterration):
     cost_history=np.zeros(n_iterration)
     for i in range(0,n_iterration): 
